@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f7f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Section */
+        .question-box {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .question-box h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .choice-btn {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .choice-btn:hover {
+            background-color: #3498db;
+            transform: translateY(-3px);
+        }
+
+        /* Routine Message Section */
+        .end-message {
+            font-size: 22px;
+            color: #2c3e50;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .routine-list {
+            margin-top: 20px;
+            background-color: #ecf0f1;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .routine-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .routine-list ul li {
+            font-size: 18px;
+            color: #34495e;
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .routine-list ul li::before {
+            content: '\2022';
+            color: #2980b9;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Fallback Message */
+        .fallback-message {
+            font-size: 18px;
+            color: #e74c3c;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            .choice-btn {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .question-box h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if routine %}
+        <div class="end-message">
+            <p>En fonction de vos réponses, voici la routine recommandée :</p>
+            <div class="routine-list">
+                <ul>
+                    {% for item in routine %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <div class="question-box">
+            <h1>Question {{ index }}: {{ question['question'] }}</h1>
+        </div>
+        <form method="POST">
+            <div class="choices">
+                {% for choice in question['choices'] %}
+                <button type="submit" name="choice" value="{{ choice }}" class="choice-btn">{{ choice }}</button>
+                {% endfor %}
+            </div>
+        </form>
+        <div class="fallback-message">
+            <p>Si aucune routine ne correspond à vos critères, veuillez consulter un dermatologue.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
