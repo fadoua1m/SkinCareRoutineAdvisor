@@ -1,0 +1,62 @@
+# Python-related files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pdb
+*.egg
+*.egg-info
+dist/
+build/
+
+# Virtual environment folders
+venv/
+env/
+ENV/
+.venv/
+
+# IDE / Editor files
+.vscode/
+.idea/
+
+# Mac system files
+.DS_Store
+
+# Python env config files
+*.env
+*.flaskenv
+*.venv
+
+# Logs
+*.log
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Node.js/Frontend related files
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Frontend build artifacts (for example, if you use Webpack, etc.)
+dist/
+build/
+
+# Dependencies for frontend (if you have any specific package files)
+package-lock.json
+yarn.lock
+
+# Testing coverage and cache files
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Backend (Flask, Django, etc.) migrations folder
+migrations/
+
+# Database files (SQLite, etc.)
+*.sqlite3
+db.sqlite3
